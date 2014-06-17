@@ -1,0 +1,11 @@
+# 
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "model:ir.action,name:act_production_form"
+msgid "Productions"
+msgstr "Producciones"
+
+msgctxt "view:sale.sale:"
+msgid "Productions"
+msgstr "Producciones"
