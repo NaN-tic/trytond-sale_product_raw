@@ -67,6 +67,7 @@ class SaleLine:
             return None
 
         production = Production()
+        production.product = self.product
         production.warehouse = self.sale.warehouse
         production.location = self.sale.warehouse.production_location
         production.reference = self.rec_name
