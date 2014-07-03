@@ -68,6 +68,8 @@ class SaleLine:
 
         production = Production()
         production.product = self.product
+        production.uom = self.unit
+        production.quantity = self.quantity
         production.warehouse = self.sale.warehouse
         production.location = self.sale.warehouse.production_location
         production.reference = self.rec_name
