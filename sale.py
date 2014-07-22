@@ -90,12 +90,12 @@ class Sale:
 
     @classmethod
     def process(cls, sales):
-        super(Sale, cls).process(sales)
         for sale in sales:
             if sale.state not in ('confirmed', 'processing', 'done'):
                 continue
             sale.create_productions()
             sale.set_production_state()
+        super(Sale, cls).process(sales)
 
     def create_productions(self):
         productions = []
