@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!-- The COPYRIGHT file at the top level of this repository contains the full
+     copyright notices and license terms. -->
+<data>
+    <xpath expr="/form/group[@id='full_workflow_buttons']/button[@name='handle_invoice_exception']"
+            position="after">
+        <button name="handle_production_exception"
+            string="Handle Production Exception"
+            icon="tryton-go-next"/>
+    </xpath>
+    <xpath expr="/form/notebook/page[@id='invoices']" position="after">
+        <page string="Productions" id="productions" col="2">
+            <field name="productions" colspan="4"/>
+            <label name="production_state"/>
+            <field name="production_state"/>
+        </page>
+    </xpath>
+</data>

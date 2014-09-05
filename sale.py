@@ -98,13 +98,13 @@ class Sale:
         super(Sale, cls).process(sales)
 
     def create_productions(self):
-        productions = []
+        production_by_line = {}
         for line in self.lines:
             production = line.get_production()
             if production:
                 production.save()
-                productions.append(production)
-        return productions
+                production_by_line[line] = production
+        return production_by_line
 
 
 class SaleLine:
@@ -113,9 +113,9 @@ class SaleLine:
     productions = fields.One2Many('production', 'origin', 'Productions',
         readonly=True)
     productions_ignored = fields.Many2Many('sale.line-ignored-production',
-            'sale_line', 'production', 'Ignored Productions', readonly=True)
+        'sale_line', 'production', 'Ignored Productions', readonly=True)
     productions_recreated = fields.Many2Many('sale.line-recreated-production',
-            'sale_line', 'production', 'Recreated Productions', readonly=True)
+        'sale_line', 'production', 'Recreated Productions', readonly=True)
     productions_done = fields.Function(fields.Boolean('Productions Done'),
         'get_production_done')
     productions_exception = fields.Function(
@@ -221,9 +221,6 @@ class SaleLine:
         production.state = 'draft'
         production.origin = self
         return production
-
-    def _get_production_operations(self):
-        return []
 
     def _get_production_inputs(self, quantity):
         pool = Pool()
