@@ -91,7 +91,7 @@ class Production:
         SaleLine = Pool().get('sale.line')
         for production in productions:
             if (production.state == 'cancel'
-                    and isinstance(production.origin, SaleLine)):
+                    and production.sale):
                 cls.raise_user_error('reset_production')
         return super(Production, cls).draft(productions)
 
