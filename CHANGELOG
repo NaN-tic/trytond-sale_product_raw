@@ -1,3 +1,4 @@
+Version 3.2.1 - 2014-10-31
 * Add is_raw_product column in product's list shown from purchase.line (add
   extra dependency)
 * Use functional sale field to check if reset production is allowed
