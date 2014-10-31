@@ -1,1 +1,13 @@
+* Add is_raw_product column in product's list shown from purchase.line (add
+  extra dependency)
+* Use functional sale field to check if reset production is allowed
+* Made it compatible with sale_pos module
+* Process sale after create line's productions
+* Changed sale.line<->production relation and allow handle production
+  exceptions
+* Set uom and quantity in productions created from sale line
+* Set product in productions created from sale line
+* Add is_raw_product column in product's list shown from sale.line
+
+Version 3.2.0 - 2014-06-17
 * Initial release
