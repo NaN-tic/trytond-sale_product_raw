@@ -3,11 +3,13 @@
 from trytond.pool import Pool
 from .sale import *
 from .production import *
+from .purchase_request import *
 
 
 def register():
     Pool.register(
         Production,
+        PurchaseRequest,
         Sale,
         SaleLine,
         SaleLineIgnoredProduction,
