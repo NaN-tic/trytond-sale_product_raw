@@ -70,6 +70,10 @@ class Production:
                 states[production.id] = 'ignored'
         return states
 
+    @property
+    def started(self):
+        return self.state == 'running'
+
     def get_sale(self, name):
         SaleLine = Pool().get('sale.line')
         if isinstance(self.origin, SaleLine):
