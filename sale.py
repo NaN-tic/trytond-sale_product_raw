@@ -20,6 +20,7 @@ class Sale:
     production_state = fields.Selection([
             ('none', 'None'),
             ('waiting', 'Waiting'),
+            ('started', 'Started'),
             ('produced', 'Produced'),
             ('exception', 'Exception'),
             ], 'Production State', readonly=True, required=True)
@@ -63,6 +64,8 @@ class Sale:
                 return 'exception'
             elif all(l.productions_done for l in self.lines):
                 return 'produced'
+            if any(p.started for p in self.productions):
+                return 'started'
             else:
                 return 'waiting'
         return 'none'
