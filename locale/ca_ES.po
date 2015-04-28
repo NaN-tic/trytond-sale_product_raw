@@ -171,6 +171,10 @@ msgid "Produced"
 msgstr "Produït"
 
 msgctxt "selection:sale.sale,production_state:"
+msgid "Started"
+msgstr "Començada"
+
+msgctxt "selection:sale.sale,production_state:"
 msgid "Waiting"
 msgstr "Esperant"
 
