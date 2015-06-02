@@ -1,3 +1,4 @@
+* Add searcher over sale's productions fields
 * Add extras_depend to stock_supply to never buy main variants
 
 Version 3.4.0 - 2014-11-03

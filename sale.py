@@ -25,7 +25,7 @@ class Sale:
             ], 'Production State', readonly=True, required=True)
     productions = fields.Function(fields.One2Many('production', None,
             'Productions'),
-        'get_productions')
+        'get_productions', searcher='search_productions')
 
     @classmethod
     def __setup__(cls):
@@ -49,6 +49,10 @@ class Sale:
             for production in line.productions:
                 productions.append(production.id)
         return productions
+
+    @classmethod
+    def search_productions(cls, name, clause):
+        return [('lines.productions.id',) + tuple(clause[1:])]
 
     def get_production_state(self):
         '''
