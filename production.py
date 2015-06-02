@@ -50,25 +50,15 @@ class Production:
             origins.append('sale.line')
         return origins
 
-    @classmethod
-    def get_sale_exception_state(cls, productions, name):
-        Sale = Pool().get('sale.sale')
-        with Transaction().set_user(0, set_context=True):
-            sales = Sale.search([
-                    ('productions', 'in', [i.id for i in productions]),
-                    ])
-
-        recreated = tuple(i for p in sales for i in p.productions_recreated)
-        ignored = tuple(i for p in sales for i in p.productions_ignored)
-
-        states = {}
-        for production in productions:
-            states[production.id] = ''
-            if production in recreated:
-                states[production.id] = 'recreated'
-            elif production.id in ignored:
-                states[production.id] = 'ignored'
-        return states
+    def get_sale_exception_state(self, name):
+        SaleLine = Pool().get('sale.line')
+        if not isinstance(self.origin, SaleLine):
+            return ''
+        if self in self.origin.productions_recreated:
+            return 'recreated'
+        if self in self.origin.productions_ignored:
+            return 'ignored'
+        return ''
 
     def get_sale(self, name):
         SaleLine = Pool().get('sale.line')
