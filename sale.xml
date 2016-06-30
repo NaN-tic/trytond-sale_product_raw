@@ -50,9 +50,7 @@
         <record model="ir.action.act_window" id="act_production_form">
             <field name="name">Productions</field>
             <field name="res_model">production</field>
-            <field name="domain"
-                eval="[('sale.id', 'in', Eval('active_ids'))]"
-                pyson="1"/>
+            <field name="domain">[("sale.id", "in", Eval('active_ids'))]</field>
         </record>
         <record model="ir.action.keyword"
                 id="act_open_production_form_keyword1">
