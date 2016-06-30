@@ -28,7 +28,7 @@ class PurchaseRequest:
             product = Product.__table__()
             template = Template.__table__()
             product_raw = ProductRaw.__table__()
-            cursor = Transaction().cursor
+            cursor = Transaction().connection.cursor()
             # Use query to speedup the process
             # fetch goods and assets not consumable and purchasable
             # skip main variants
