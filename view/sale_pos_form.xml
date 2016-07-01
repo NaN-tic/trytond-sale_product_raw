@@ -8,7 +8,7 @@
             string="Handle Production Exception"
             icon="tryton-go-next"/>
     </xpath>
-    <xpath expr="/form/notebook/page[@id='invoices']" position="after">
+    <xpath expr="/form/notebook/page[@name='invoices']" position="after">
         <page string="Productions" id="productions" col="2">
             <field name="productions" colspan="4"/>
             <label name="production_state"/>
