@@ -7,7 +7,6 @@ from trytond.pool import Pool, PoolMeta
 from trytond.transaction import Transaction
 
 __all__ = ['Production']
-__metaclass__ = PoolMeta
 
 
 def process_sale(func):
@@ -24,6 +23,7 @@ def process_sale(func):
 
 
 class Production:
+    __metaclass__ = PoolMeta
     __name__ = 'production'
 
     sale_exception_state = fields.Function(fields.Selection([
