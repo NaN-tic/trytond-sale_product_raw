@@ -11,10 +11,10 @@ from trytond.wizard import Wizard, StateView, StateTransition, Button
 __all__ = ['Sale', 'SaleLine',
     'SaleLineIgnoredProduction', 'SaleLineRecreatedProduction',
     'HandleProductionExceptionAsk', 'HandleProductionException']
-__metaclass__ = PoolMeta
 
 
 class Sale:
+    __metaclass__ = PoolMeta
     __name__ = 'sale.sale'
 
     production_state = fields.Selection([
@@ -115,6 +115,7 @@ class Sale:
 
 
 class SaleLine:
+    __metaclass__ = PoolMeta
     __name__ = 'sale.line'
 
     productions = fields.One2Many('production', 'origin', 'Productions',
