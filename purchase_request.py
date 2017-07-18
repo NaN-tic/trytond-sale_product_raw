@@ -15,7 +15,7 @@ class PurchaseRequest:
     __name__ = 'purchase.request'
 
     @classmethod
-    def generate_requests(cls, products=None, warehouses=None):
+    def generate_requests(cls, products=None):
         """
         Never buy a main product.
         """
@@ -47,5 +47,4 @@ class PurchaseRequest:
             products = Product.browse([r[0] for r in cursor.fetchall()])
         else:
             products = [p for p in products if not p.raw_product]
-        return super(PurchaseRequest, cls).generate_requests(products=products,
-            warehouses=warehouses)
+        return super(PurchaseRequest, cls).generate_requests(products=products)
