@@ -256,7 +256,9 @@ class SaleLine:
         move.uom = self.unit
         move.product = self.product
         move.from_location = self.warehouse.production_location
-        move.to_location = self.warehouse.storage_location
+        move.to_location = (getattr(self.warehouse,
+                'production_output_location', None) or
+            self.warehouse.storage_location)
         move.state = 'draft'
         move.company = self.sale.company
         move.currency = self.sale.currency
