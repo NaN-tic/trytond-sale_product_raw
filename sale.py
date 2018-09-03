@@ -13,8 +13,7 @@ __all__ = ['Sale', 'SaleLine',
     'HandleProductionExceptionAsk', 'HandleProductionException']
 
 
-class Sale:
-    __metaclass__ = PoolMeta
+class Sale(metaclass=PoolMeta):
     __name__ = 'sale.sale'
 
     production_state = fields.Selection([
@@ -114,8 +113,7 @@ class Sale:
         return production_by_line
 
 
-class SaleLine:
-    __metaclass__ = PoolMeta
+class SaleLine(metaclass=PoolMeta):
     __name__ = 'sale.line'
 
     productions = fields.One2Many('production', 'origin', 'Productions',

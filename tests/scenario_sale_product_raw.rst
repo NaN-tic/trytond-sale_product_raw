@@ -125,7 +125,7 @@ Sale services::
     >>> service_sale.click('confirm')
     >>> service_sale.click('process')
     >>> service_sale.state
-    u'processing'
+    'processing'
     >>> service_invoice, = service_sale.invoices
     >>> service_sale.productions == []
     True
@@ -146,13 +146,13 @@ Sale 5 products::
     >>> sale.click('confirm')
     >>> sale.click('process')
     >>> sale.state
-    u'processing'
+    'processing'
     >>> sale.reload()
     >>> len(sale.shipments), len(sale.shipment_returns), len(sale.productions)
     (1, 0, 1)
     >>> production, = sale.productions
     >>> production.state
-    u'draft'
+    'draft'
     >>> input, = production.inputs
     >>> input.product == raw_product
     True

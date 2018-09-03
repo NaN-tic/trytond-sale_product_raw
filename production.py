@@ -22,8 +22,7 @@ def process_sale(func):
     return wrapper
 
 
-class Production:
-    __metaclass__ = PoolMeta
+class Production(metaclass=PoolMeta):
     __name__ = 'production'
 
     sale_exception_state = fields.Function(fields.Selection([
