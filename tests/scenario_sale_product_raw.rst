@@ -76,6 +76,7 @@ Create product::
     >>> template.type = 'goods'
     >>> template.purchasable = True
     >>> template.salable = True
+    >>> template.producible = True
     >>> template.list_price = Decimal('10')
     >>> template.cost_price = Decimal('5')
     >>> template.cost_price_method = 'fixed'
