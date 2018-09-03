@@ -8,12 +8,15 @@ from . import purchase_request
 def register():
     Pool.register(
         production.Production,
-        purchase_request.PurchaseRequest,
         sale.Sale,
         sale.SaleLine,
         sale.SaleLineIgnoredProduction,
         sale.SaleLineRecreatedProduction,
         sale.HandleProductionExceptionAsk,
+        module='sale_product_raw', type_='model')
+    Pool.register(
+        purchase_request.PurchaseRequest,
+        depends=['stock_supply'],
         module='sale_product_raw', type_='model')
     Pool.register(
         sale.HandleProductionException,
