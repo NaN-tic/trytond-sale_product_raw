@@ -17,4 +17,4 @@ def register():
         module='sale_product_raw', type_='model')
     Pool.register(
         sale.HandleProductionException,
-        module='sale', type_='wizard')
+        module='sale_product_raw', type_='wizard')
