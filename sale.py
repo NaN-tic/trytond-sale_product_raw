@@ -7,6 +7,8 @@ from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval, Id
 from trytond.transaction import Transaction
 from trytond.wizard import Wizard, StateView, StateTransition, Button
+from trytond.i18n import gettext
+from trytond.exceptions import UserError
 
 __all__ = ['Sale', 'SaleLine',
     'SaleLineIgnoredProduction', 'SaleLineRecreatedProduction',
@@ -131,11 +133,6 @@ class SaleLine(metaclass=PoolMeta):
     @classmethod
     def __setup__(cls):
         super(SaleLine, cls).__setup__()
-        cls._error_messages.update({
-                'production_location_required': (
-                    'Warehouse "%(warehouse)s" of sale "%(sale)s" is missing '
-                    'the production location.'),
-                })
 
     def get_rec_name(self, name):
         return "%s (%s, %s)" % (super(SaleLine, self).get_rec_name(name),
@@ -202,10 +199,12 @@ class SaleLine(metaclass=PoolMeta):
             return
 
         if not self.sale.warehouse.production_location:
-            self.raise_user_error('production_location_required', {
-                    'warehouse': self.sale.warehouse.rec_name,
-                    'sale': self.sale.rec_name,
-                    })
+            raise UserError(gettext(
+                'sale_product_raw.production_location_required',
+                    warehouse=self.sale.warehouse.rec_name,
+                    sale=self.sale.rec_name,
+                    ))
+
         inputs = self._get_production_inputs(quantity)
         outputs = self._get_production_outputs(quantity)
 
