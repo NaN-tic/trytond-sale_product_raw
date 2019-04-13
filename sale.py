@@ -25,7 +25,7 @@ class Sale(metaclass=PoolMeta):
             ('produced', 'Produced'),
             ('exception', 'Exception'),
             ], 'Production State', readonly=True, required=True)
-    productions = fields.Function(fields.One2Many('production', None,
+    productions = fields.Function(fields.Many2Many('production', None, None,
             'Productions'),
         'get_productions', searcher='search_productions')
 
