@@ -6,7 +6,7 @@
             position="after">
         <button name="handle_production_exception"
             string="Handle Production Exception"
-            icon="tryton-go-next"/>
+            icon="tryton-forward"/>
     </xpath>
     <xpath expr="/form/notebook/page[@name='invoices']" position="after">
         <page string="Productions" id="productions" col="2">
