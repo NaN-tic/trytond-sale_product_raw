@@ -76,7 +76,6 @@ Create product::
     >>> template.name = 'product'
     >>> template.default_uom = unit
     >>> template.type = 'goods'
-    >>> template.purchasable = True
     >>> template.salable = True
     >>> template.producible = True
     >>> template.list_price = Decimal('10')
@@ -160,4 +159,3 @@ Sale 5 products::
     >>> output, = production.outputs
     >>> output.product == product
     True
-

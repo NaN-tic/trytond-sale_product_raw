@@ -222,7 +222,6 @@ class SaleLine(metaclass=PoolMeta):
         production.company = self.sale.company
         production.inputs = inputs
         production.outputs = outputs
-        production.notes = self.note
         production.state = 'draft'
         production.origin = self
         return production
