@@ -2,16 +2,12 @@
 <!-- The COPYRIGHT file at the top level of this repository contains the full
      copyright notices and license terms. -->
 <data>
-    <xpath expr="/form/notebook/page[@id='sale']/group[@id='states']/field[@name='invoice_state']"
-            position="after">
+    <xpath expr="/form/notebook/page[@id='sale']/group[@id='states']/field[@name='invoice_state']" position="after">
         <label name="production_state"/>
         <field name="production_state"/>
     </xpath>
-    <xpath expr="/form/notebook/page[@id='sale']/group[@id='amount_buttons']/group/button[@name='handle_invoice_exception']"
-            position="after">
-        <button name="handle_production_exception"
-            string="Handle Production Exception"
-            icon="tryton-forward"/>
+    <xpath expr="/form/group[@id='buttons']/button[@name='handle_invoice_exception']" position="after">
+        <button name="handle_production_exception"/>
     </xpath>
     <xpath expr="/form/notebook/page[@name='invoices']" position="after">
         <page string="Productions" id="productions">

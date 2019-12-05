@@ -38,6 +38,7 @@ class Sale(metaclass=PoolMeta):
                         | (Eval('state') == 'cancel')),
                     'readonly': ~Eval('groups', []).contains(
                         Id('sale', 'group_sale')),
+                    'icon': 'tryton-forward',
                     },
                 })
 
