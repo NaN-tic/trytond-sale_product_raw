@@ -33,6 +33,16 @@
             <field name="perm_delete" eval="False"/>
         </record>
 
+        <record model="ir.model.button" id="sale_handle_production_exception_button">
+            <field name="name">handle_production_exception</field>
+            <field name="string">Handle Production Exception</field>
+            <field name="model" search="[('model', '=', 'sale.sale')]"/>
+        </record>
+        <record model="ir.model.button-res.group" id="sale_handle_production_exception_button_group_sale">
+            <field name="button" ref="sale_handle_production_exception_button"/>
+            <field name="group" ref="sale.group_sale"/>
+        </record>
+
         <!-- sale.handle.production.exception -->
         <record model="ir.action.wizard" id="wizard_production_handle_exception">
             <field name="name">Handle Production Exception</field>
