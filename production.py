@@ -16,11 +16,11 @@ def process_sale(func):
     def wrapper(cls, productions):
         pool = Pool()
         Sale = pool.get('sale.sale')
-        with Transaction().set_user(0, set_context=True):
-            sales = [p.sale for p in cls.browse(productions) if p.sale]
+        with Transaction().set_context(_check_access=False):
+            sales = set(p.sale for p in cls.browse(productions) if p.sale)
         func(cls, productions)
-        with Transaction().set_user(0, set_context=True):
-            Sale.process(sales)
+        if sales:
+            Sale.__queue__.process(sales)
     return wrapper
 
 
