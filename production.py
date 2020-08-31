@@ -38,10 +38,8 @@ class Production(metaclass=PoolMeta):
 
     @classmethod
     def _get_origin(cls):
-        origins = super(Production, cls)._get_origin()
-        if 'sale.line' not in origins:
-            origins.append('sale.line')
-        return origins
+        res = super(Production, cls)._get_origin()
+        return res | {'sale.line'}
 
     def get_sale_exception_state(self, name):
         SaleLine = Pool().get('sale.line')
