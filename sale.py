@@ -35,7 +35,7 @@ class Sale(metaclass=PoolMeta):
         cls._buttons.update({
                 'handle_production_exception': {
                     'invisible': ((Eval('production_state') != 'exception')
-                        | (Eval('state') == 'cancel')),
+                        | (Eval('state') == 'cancelled')),
                     'readonly': ~Eval('groups', []).contains(
                         Id('sale', 'group_sale')),
                     'icon': 'tryton-forward',
@@ -168,7 +168,7 @@ class SaleLine(metaclass=PoolMeta):
         skip_ids = set(x.id for x in self.productions_ignored)
         skip_ids.update(x.id for x in self.productions_recreated)
         for production in self.productions:
-            if production.state == 'cancel' \
+            if production.state == 'cancelled' \
                     and production.id not in skip_ids:
                 return True
         return False
@@ -332,7 +332,7 @@ class HandleProductionException(Wizard):
             skips = set(line.productions_ignored)
             skips.update(line.productions_recreated)
             for production in line.productions:
-                if production.state == 'cancel' and production not in skips:
+                if production.state == 'cancelled' and production not in skips:
                     productions.append(production.id)
         return {
             'recreate_productions': productions,
