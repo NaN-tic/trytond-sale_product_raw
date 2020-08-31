@@ -73,7 +73,6 @@ class Production(metaclass=PoolMeta):
     @ModelView.button
     @Workflow.transition('draft')
     def draft(cls, productions):
-        SaleLine = Pool().get('sale.line')
         for production in productions:
             if (production.state == 'cancel'
                     and production.sale):
