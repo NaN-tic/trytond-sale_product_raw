@@ -74,7 +74,7 @@ class Production(metaclass=PoolMeta):
     @Workflow.transition('draft')
     def draft(cls, productions):
         for production in productions:
-            if (production.state == 'cancel'
+            if (production.state == 'cancelled'
                     and production.sale):
                 raise UserError(gettext(
                     'sale_product_raw.reset_production'))
