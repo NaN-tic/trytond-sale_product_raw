@@ -9,7 +9,7 @@
     <xpath expr="/form/group[@id='buttons']/button[@name='handle_invoice_exception']" position="after">
         <button name="handle_production_exception"/>
     </xpath>
-    <xpath expr="/form/notebook/page[@name='invoices']" position="after">
+    <xpath expr="/form/notebook/page[@id='other']" position="after">
         <page string="Productions" id="productions">
             <field name="productions" colspan="4"/>
         </page>
