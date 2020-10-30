@@ -36,8 +36,6 @@ class Sale(metaclass=PoolMeta):
                 'handle_production_exception': {
                     'invisible': ((Eval('production_state') != 'exception')
                         | (Eval('state') == 'cancel')),
-                    'readonly': ~Eval('groups', []).contains(
-                        Id('sale', 'group_sale')),
                     'icon': 'tryton-forward',
                     },
                 })
