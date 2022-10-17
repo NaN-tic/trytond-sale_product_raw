@@ -1,7 +1,6 @@
 # The COPYRIGHT file at the top level of this repository contains the full
 # copyright notices and license terms.
 from decimal import Decimal
-
 from trytond.model import ModelView, ModelSQL, fields
 from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval, Id
@@ -9,6 +8,7 @@ from trytond.transaction import Transaction
 from trytond.wizard import Wizard, StateView, StateTransition, Button
 from trytond.i18n import gettext
 from trytond.exceptions import UserError
+from trytond.modules.product import round_price
 
 __all__ = ['Sale', 'SaleLine',
     'SaleLineIgnoredProduction', 'SaleLineRecreatedProduction',
@@ -243,10 +243,7 @@ class SaleLine(metaclass=PoolMeta):
         return [move]
 
     def _get_production_outputs(self, quantity):
-        pool = Pool()
-        Move = pool.get('stock.move')
-        Product = pool.get('product.product')
-        Template = pool.get('product.template')
+        Move = Pool().get('stock.move')
 
         move = Move()
         move.quantity = quantity
@@ -261,13 +258,7 @@ class SaleLine(metaclass=PoolMeta):
         move.currency = self.sale.currency
 
         cost = Decimal(str(quantity)) * self.product.cost_price
-        if hasattr(Product, 'cost_price'):
-            digits = Product.cost_price.digits
-        else:
-            digits = Template.cost_price.digits
-        move.unit_price = Decimal(cost / Decimal(str(quantity))
-            ).quantize(Decimal(str(10 ** -digits[1])))
-
+        move.unit_price = round_price(Decimal(cost / Decimal(str(quantity))))
         return [move]
 
     @classmethod
