@@ -277,9 +277,9 @@ class SaleLineIgnoredProduction(ModelSQL):
     __name__ = 'sale.line-ignored-production'
     _table = 'sale_line_productions_ignored_rel'
     sale_line = fields.Many2One('sale.line', 'Sale Line', ondelete='CASCADE',
-        select=True, required=True)
+        required=True)
     production = fields.Many2One('production', 'Production',
-        ondelete='RESTRICT', select=True, required=True)
+        ondelete='RESTRICT', required=True)
 
 
 class SaleLineRecreatedProduction(ModelSQL):
@@ -287,9 +287,9 @@ class SaleLineRecreatedProduction(ModelSQL):
     __name__ = 'sale.line-recreated-production'
     _table = 'sale_line_productions_recreated_rel'
     sale_line = fields.Many2One('sale.line', 'Sale Line', ondelete='CASCADE',
-        select=True, required=True)
+        required=True)
     production = fields.Many2One('production', 'Production',
-        ondelete='RESTRICT', select=True, required=True)
+        ondelete='RESTRICT', required=True)
 
 
 class HandleProductionExceptionAsk(ModelView):
