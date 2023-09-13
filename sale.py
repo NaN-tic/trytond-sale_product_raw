@@ -157,7 +157,7 @@ class SaleLine(metaclass=PoolMeta):
                     and production.id not in skip_ids:
                 done = False
                 break
-            quantity -= Uom.compute_qty(production.uom, production.quantity,
+            quantity -= Uom.compute_qty(production.unit, production.quantity,
                 self.unit)
         if done:
             if quantity > 0.0:
@@ -194,7 +194,7 @@ class SaleLine(metaclass=PoolMeta):
         skip_ids = set(x.id for x in self.productions_recreated)
         for production in self.productions:
             if production.id not in skip_ids:
-                quantity -= Uom.compute_qty(production.uom,
+                quantity -= Uom.compute_qty(production.unit,
                     production.quantity, self.unit)
         if quantity <= 0.0:
             return
@@ -215,7 +215,7 @@ class SaleLine(metaclass=PoolMeta):
         with Transaction().set_user(0, set_context=True):
             production = Production()
         production.product = self.product
-        production.uom = self.unit
+        production.unit = self.unit
         production.quantity = quantity
         production.warehouse = self.sale.warehouse
         production.location = self.sale.warehouse.production_location
@@ -233,7 +233,7 @@ class SaleLine(metaclass=PoolMeta):
 
         move = Move()
         move.quantity = quantity
-        move.uom = self.unit
+        move.unit = self.unit
         move.product = self.product.raw_product
         move.from_location = self.warehouse.storage_location
         move.to_location = self.warehouse.production_location
@@ -247,7 +247,7 @@ class SaleLine(metaclass=PoolMeta):
 
         move = Move()
         move.quantity = quantity
-        move.uom = self.unit
+        move.unit = self.unit
         move.product = self.product
         move.from_location = self.warehouse.production_location
         move.to_location = (getattr(self.warehouse,
