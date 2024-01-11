@@ -298,7 +298,7 @@ class HandleProductionExceptionAsk(ModelView):
     recreate_productions = fields.Many2Many('production', None, None,
         'Recreate Productions', domain=[
             ('id', 'in', Eval('domain_productions')),
-            ], depends=['domain_productions'])
+            ])
     domain_productions = fields.Many2Many('production', None, None,
         'Domain Productions')
 
