@@ -17,7 +17,7 @@
         </record>
 
         <record model="ir.model.access" id="access_sale_production">
-            <field name="model" search="[('model', '=', 'sale.sale')]"/>
+            <field name="model">sale.sale</field>
             <field name="group" ref="production.group_production"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="False"/>
@@ -25,7 +25,7 @@
             <field name="perm_delete" eval="False"/>
         </record>
         <record model="ir.model.access" id="access_sale_line_production">
-            <field name="model" search="[('model', '=', 'sale.line')]"/>
+            <field name="model">sale.line</field>
             <field name="group" ref="production.group_production"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="False"/>
@@ -36,7 +36,7 @@
         <record model="ir.model.button" id="sale_handle_production_exception_button">
             <field name="name">handle_production_exception</field>
             <field name="string">Handle Production Exception</field>
-            <field name="model" search="[('model', '=', 'sale.sale')]"/>
+            <field name="model">sale.sale</field>
         </record>
         <record model="ir.model.button-res.group" id="sale_handle_production_exception_button_group_sale">
             <field name="button" ref="sale_handle_production_exception_button"/>
