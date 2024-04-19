@@ -97,8 +97,8 @@ class Production(metaclass=PoolMeta):
 
     @classmethod
     @process_sale
-    def done(cls, productions):
-        super(Production, cls).done(productions)
+    def do(cls, productions):
+        super(Production, cls).do(productions)
 
     @classmethod
     @process_sale
