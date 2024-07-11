@@ -88,7 +88,6 @@ class Sale(metaclass=PoolMeta):
             default = {}
         default = default.copy()
         default['production_state'] = 'none'
-        default['productions'] = None
         return super(Sale, cls).copy(sales, default=default)
 
     @classmethod
