@@ -205,7 +205,6 @@ class SaleLine(metaclass=PoolMeta):
                     sale=self.sale.rec_name,
                     ))
 
-        import pdb; pdb.set_trace()
         inputs = self._get_production_inputs(quantity)
         outputs = self._get_production_outputs(quantity)
 
