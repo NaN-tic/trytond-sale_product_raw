@@ -205,6 +205,7 @@ class SaleLine(metaclass=PoolMeta):
                     sale=self.sale.rec_name,
                     ))
 
+        import pdb; pdb.set_trace()
         inputs = self._get_production_inputs(quantity)
         outputs = self._get_production_outputs(quantity)
 
@@ -238,7 +239,9 @@ class SaleLine(metaclass=PoolMeta):
         move.to_location = self.warehouse.production_location
         move.state = 'draft'
         move.company = self.sale.company
-        move.currency = self.sale.currency
+        if move.unit_price_required:
+            move.currency = self.sale.currency
+            move.unit_price = self.product.cost_price
         return [move]
 
     def _get_production_outputs(self, quantity):
@@ -254,10 +257,10 @@ class SaleLine(metaclass=PoolMeta):
             self.warehouse.storage_location)
         move.state = 'draft'
         move.company = self.sale.company
-        move.currency = self.sale.currency
-
-        cost = Decimal(str(quantity)) * self.product.cost_price
-        move.unit_price = round_price(Decimal(cost / Decimal(str(quantity))))
+        if move.unit_price_required:
+            move.currency = self.sale.currency
+            cost = Decimal(str(quantity)) * self.product.cost_price
+            move.unit_price = round_price(Decimal(cost / Decimal(str(quantity))))
         return [move]
 
     @classmethod
