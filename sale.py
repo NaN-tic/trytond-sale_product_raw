@@ -256,8 +256,9 @@ class SaleLine(metaclass=PoolMeta):
         move.company = self.sale.company
         move.currency = self.sale.currency
 
-        cost = Decimal(str(quantity)) * self.product.cost_price
-        move.unit_price = round_price(Decimal(cost / Decimal(str(quantity))))
+        cost = Decimal(str(quantity)) * (self.product.cost_price or 0)
+        move.unit_price = (round_price(Decimal(cost / Decimal(str(quantity))))
+            if cost else 0)
         return [move]
 
     @classmethod
