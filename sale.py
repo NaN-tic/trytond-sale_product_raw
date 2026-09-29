@@ -24,7 +24,8 @@ class Sale(metaclass=PoolMeta):
             ('started', 'Started'),
             ('produced', 'Produced'),
             ('exception', 'Exception'),
-            ], 'Production State', readonly=True, required=True)
+            ], 'Production State', required=True,
+        states={'editable': False})
     productions = fields.Function(fields.Many2Many('production', None, None,
             'Productions'),
         'get_productions', searcher='search_productions')
@@ -121,9 +122,11 @@ class SaleLine(metaclass=PoolMeta):
     productions = fields.One2Many('production', 'origin', 'Productions',
         readonly=True)
     productions_ignored = fields.Many2Many('sale.line-ignored-production',
-        'sale_line', 'production', 'Ignored Productions', readonly=True)
+        'sale_line', 'production', 'Ignored Productions',
+        states={'editable': False})
     productions_recreated = fields.Many2Many('sale.line-recreated-production',
-        'sale_line', 'production', 'Recreated Productions', readonly=True)
+        'sale_line', 'production', 'Recreated Productions',
+        states={'editable': False})
     productions_done = fields.Function(fields.Boolean('Productions Done'),
         'get_production_done')
     productions_exception = fields.Function(
